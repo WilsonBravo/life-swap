@@ -1,8 +1,11 @@
-import { Stack } from "expo-router";
+import { Slot } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
+import { Provider as StoreProvider } from "react-redux";
+import Toast from "react-native-toast-message";
 
 import "./global.css";
+import { store } from "@/modules/store/store";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -14,21 +17,11 @@ export default function RootLayout() {
 
   return (
     <>
-      <StatusBar hidden />
-      <Stack>
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="(auth)"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
+      <StoreProvider store={store}>
+        <StatusBar hidden />
+        <Slot />
+        <Toast />
+      </StoreProvider>
     </>
   );
 }
