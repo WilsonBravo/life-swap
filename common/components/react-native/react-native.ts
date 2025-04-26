@@ -9,6 +9,4 @@ export {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
-} from "./react-native/react-native";
-export { Icon } from "./icon/icon";
-export { FormInput } from "./form-input/form-input";
+} from "react-native";

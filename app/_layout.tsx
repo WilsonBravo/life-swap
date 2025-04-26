@@ -2,6 +2,7 @@ import { Slot } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { Provider as StoreProvider } from "react-redux";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 
 import "./global.css";
@@ -17,11 +18,13 @@ export default function RootLayout() {
 
   return (
     <>
-      <StoreProvider store={store}>
-        <StatusBar hidden />
-        <Slot />
-        <Toast />
-      </StoreProvider>
+      <SafeAreaProvider>
+        <StoreProvider store={store}>
+          <StatusBar hidden />
+          <Slot />
+          <Toast />
+        </StoreProvider>
+      </SafeAreaProvider>
     </>
   );
 }
