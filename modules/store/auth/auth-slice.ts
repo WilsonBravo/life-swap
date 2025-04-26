@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { DataStatus } from "@/common/enums/enums";
 import { type ValueOf } from "@/common/types/types";
 import { type UserProfile } from "./types/types";
-import { signInAction } from "./auth-actions";
+import { signInAction, signUpAction } from "./auth-actions";
 
 type State = {
   userData: UserProfile | null;
@@ -38,6 +38,26 @@ const { reducer, actions, name } = createSlice({
       };
     });
     builder.addCase(signInAction.rejected, (state) => {
+      return {
+        ...state,
+        status: DataStatus.ERROR,
+      };
+    });
+
+    builder.addCase(signUpAction.pending, (state) => {
+      return {
+        ...state,
+        status: DataStatus.PENDING,
+      };
+    });
+    builder.addCase(signUpAction.fulfilled, (state, action) => {
+      return {
+        ...state,
+        userData: action.payload,
+        status: DataStatus.SUCCESS,
+      };
+    });
+    builder.addCase(signUpAction.rejected, (state) => {
       return {
         ...state,
         status: DataStatus.ERROR,

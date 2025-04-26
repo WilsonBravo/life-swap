@@ -2,8 +2,8 @@ import { z } from "zod";
 
 const validationSchema = z
   .object({
-    name: z
-      .string({ message: "Invalid name" })
+    username: z
+      .string({ message: "Invalid username" })
       .min(2, { message: "More than 2 characters" })
       .max(40, { message: "Less than 40 characters" })
       .regex(/^\S+$/, {

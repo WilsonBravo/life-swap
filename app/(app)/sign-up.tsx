@@ -20,9 +20,12 @@ import {
   SignUpFormData,
 } from "@/common/validations/validations";
 import Toast from "react-native-toast-message";
+import { useAppDispatch } from "@/common/hooks/hooks";
+import { signUpAction } from "@/modules/store/auth/auth-actions";
 
 const SignUp = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const {
     control,
@@ -32,11 +35,13 @@ const SignUp = () => {
     resolver: zodResolver(signUpValidationSchema),
   });
 
-  const onSubmit = (formData: SignUpFormData) => {
+  const onSubmit = async (formData: SignUpFormData) => {
+    await dispatch(signUpAction(formData));
     Toast.show({
       type: "success",
       text1: "You signed up successfully",
     });
+    router.replace("/(app)/(tabs)");
   };
 
   return (
@@ -64,10 +69,10 @@ const SignUp = () => {
               <View className="gap-4 w-full px-[40px]">
                 <FormInput
                   control={control}
-                  name="name"
+                  name="username"
                   placeholder="Username"
                   iconName="user"
-                  errorMessage={errors.name?.message ?? null}
+                  errorMessage={errors.username?.message ?? null}
                 />
 
                 <FormInput

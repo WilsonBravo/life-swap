@@ -1,4 +1,5 @@
 import { ApiPath } from "@/common/enums/enums";
+import { UserProfile, UserSignIn, UserSignUp } from "./types/types";
 
 type Constructor = {
   baseUrl: string;
@@ -14,18 +15,23 @@ class AuthService {
     this.basePath = ApiPath.AUTH;
   }
 
-  public signIn({ email, password }: { email: string; password: string }): {
-    username: string;
-    email: string;
-  } {
+  public signIn({ email, password }: UserSignIn): UserProfile {
     return {
       username: "johndoe",
       email,
     };
   }
 
-  public signUp(): void {
-    return;
+  public signUp({
+    username,
+    email,
+    password,
+    confirmPassword,
+  }: UserSignUp): UserProfile {
+    return {
+      username: "johndoe",
+      email,
+    };
   }
 
   public signOut(): void {

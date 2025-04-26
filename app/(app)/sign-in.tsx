@@ -20,9 +20,12 @@ import {
   SignInFormData,
 } from "@/common/validations/validations";
 import Toast from "react-native-toast-message";
+import { signInAction } from "@/modules/store/auth/auth-actions";
+import { useAppDispatch } from "@/common/hooks/hooks";
 
 const SignIn = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const {
     control,
@@ -32,11 +35,13 @@ const SignIn = () => {
     resolver: zodResolver(signInValidationSchema),
   });
 
-  const onSubmit = (formData: SignInFormData) => {
+  const onSubmit = async (formData: SignInFormData) => {
+    await dispatch(signInAction(formData));
     Toast.show({
       type: "success",
       text1: "You logged in successfully",
     });
+    router.replace("/(app)/(tabs)");
   };
 
   return (
