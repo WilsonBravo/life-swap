@@ -1,23 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "expo-router";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
   View,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  TextInput,
   Image,
-  Icon,
   KeyboardAvoidingView,
   Keyboard,
   Platform,
+  FormInput,
 } from "@/common/components/components";
 import { images } from "@/common/constants/constants";
+import {
+  signInValidationSchema,
+  SignInFormData,
+} from "@/common/validations/validations";
+import Toast from "react-native-toast-message";
 
 const SignIn = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInValidationSchema),
+  });
+
+  const onSubmit = (formData: SignInFormData) => {
+    Toast.show({
+      type: "success",
+      text1: "You logged in successfully",
+    });
+  };
 
   return (
     <View className="relative flex-1 bg-background">
@@ -34,50 +54,36 @@ const SignIn = () => {
               className="ml-auto bg-primary-400 rounded-l-full px-5 py-3 w-[100px]"
               onPress={() => router.replace("/sign-up")}
             >
-              <Text className="text-2xl color-white text-right">Sign Up</Text>
+              <Text className="text-xl color-white text-right">Sign Up</Text>
             </TouchableOpacity>
-            <Text className="text-8xl font-bold color-secondary-800">
+            <Text className="text-6xl font-bold color-secondary-800">
               LifeSwap
             </Text>
-            <Text className="text-6xl font-bold p-4 text-center">Welcome back! Log in</Text>
+            <Text className="text-4xl font-bold">Create Account</Text>
             <View className="flex-row items-center w-full pb-20">
               <View className="gap-4 w-full px-[40px]">
-                <View className="flex-row gap-2 items-center bg-white px-5 rounded-xl w-[230px]">
-                  <Icon
-                    name="envelope"
-                    size={20}
-                    className="color-secondary-500"
-                  />
-                  <TextInput
-                    placeholder="Email"
-                    className="flex-1 text-2xl placeholder:text-secondary-500"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                  />
-                </View>
-                <View className="flex-row gap-2 items-center bg-white px-5 rounded-xl w-[230px]">
-                  <Icon name="lock" size={20} className="color-secondary-500" />
-                  <TextInput
-                    placeholder="Password"
-                    className="flex-1 text-2xl placeholder:text-secondary-500"
-                    secureTextEntry={!showPassword}
-                  />
-                  <TouchableOpacity
-                    onPress={() => setShowPassword(!showPassword)}
-                  >
-                    <Icon
-                      name={showPassword ? "eye" : "eye-slash"}
-                      className="color-secondary-500"
-                      size={16}
-                    />
-                  </TouchableOpacity>
-                </View>
+                <FormInput
+                  control={control}
+                  name="email"
+                  placeholder="Email"
+                  iconName="envelope"
+                  errorMessage={errors.email?.message ?? null}
+                />
+
+                <FormInput
+                  control={control}
+                  name="password"
+                  placeholder="Password"
+                  iconName="lock"
+                  errorMessage={errors.password?.message ?? null}
+                  password
+                />
+
                 <TouchableOpacity
-                  onPress={() => {}}
+                  onPress={handleSubmit(onSubmit)}
                   className="bg-primary-400 rounded-full px-5 py-3 w-[150px] items-center"
                 >
-                  <Text className="text-2xl color-white">Sign In</Text>
+                  <Text className="text-xl color-white">Log In</Text>
                 </TouchableOpacity>
               </View>
             </View>

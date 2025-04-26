@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "expo-router";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
@@ -54,7 +54,7 @@ const SignUp = () => {
               className="ml-auto bg-primary-400 rounded-l-full px-5 py-3 w-[100px]"
               onPress={() => router.replace("/sign-in")}
             >
-              <Text className="text-xl color-white text-right">Sign In</Text>
+              <Text className="text-xl color-white text-right">Log In</Text>
             </TouchableOpacity>
             <Text className="text-6xl font-bold color-secondary-800">
               LifeSwap
