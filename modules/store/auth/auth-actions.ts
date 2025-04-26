@@ -39,12 +39,12 @@ const signUpAction = createAsyncThunk<
 //   return authService.verifyToken();
 // });
 
-// const signOutAction = createAsyncThunk<void, void, AsyncThunkConfig>(
-//   `${authName}/sign-out`,
-//   (_payload, { extra }) => {
-//     const { authService } = extra;
-//     authService.signOut();
-//   }
-// );
+const signOutAction = createAsyncThunk<void, void, AsyncThunkConfig>(
+  `${authName}/sign-out`,
+  (_payload, { extra }) => {
+    const { authService } = extra;
+    authService.signOut();
+  }
+);
 
-export { signInAction, signUpAction };
+export { signInAction, signUpAction, signOutAction };
