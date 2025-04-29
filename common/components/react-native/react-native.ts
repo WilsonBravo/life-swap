@@ -1,6 +1,8 @@
 export {
   View,
   Text,
+  TextProps,
+  TextInputProps,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,

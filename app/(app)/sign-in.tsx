@@ -61,10 +61,8 @@ const SignIn = () => {
             >
               <Text className="text-xl color-white text-right">Sign Up</Text>
             </TouchableOpacity>
-            <Text className="text-6xl font-bold color-secondary-800">
-              LifeSwap
-            </Text>
-            <Text className="text-4xl font-bold">Create Account</Text>
+            <Text className="text-6xl color-secondary-800">LifeSwap</Text>
+            <Text className="text-4xl">Create Account</Text>
             <View className="flex-row items-center w-full pb-20">
               <View className="gap-4 w-full px-[40px]">
                 <FormInput

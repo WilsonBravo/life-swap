@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+import { platformSelect } from "nativewind/theme";
+
 module.exports = {
-  content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./common/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
@@ -32,9 +34,19 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ["Baloo2-Regular"],
-        bold: ["Baloo2-Bold"],
-        sans: ["System"],
+        "u-regular": ["Ubuntu-Regular"],
+        "u-bold": ["Ubuntu-Bold"],
+        "u-bold-italic": ["Ubuntu-BoldItalic"],
+        "u-italic": ["Ubuntu-Italic"],
+        "u-light": ["Ubuntu-Light"],
+        "u-light-italic": ["Ubuntu-LightItalic"],
+        "u-medium": ["Ubuntu-Medium"],
+        "u-medium-italic": ["Ubuntu-MediumItalic"],
+        system: platformSelect({
+          ios: "Georgia",
+          android: "sans-serif",
+          default: "ui-sans-serif",
+        }),
       },
     },
   },

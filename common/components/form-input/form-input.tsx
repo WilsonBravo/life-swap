@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
-import { View, Text, TextInput, TouchableOpacity } from "../react-native/react-native";
+import { View, Text, TouchableOpacity } from "../react-native/react-native";
+import { CustomTextInput as TextInput } from "../custom-text-input/custom-text-input";
 import { Icon } from "../icon/icon";
 
 type Properties<T extends FieldValues> = {
