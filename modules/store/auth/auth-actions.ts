@@ -1,11 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { AsyncThunkConfig } from "@/common/types/types";
-import {
-  type UserSignIn,
-  type UserProfile,
-  type UserSignUp,
-} from "./types/types";
+import { AsyncThunkConfig, UserProfile } from "@/common/types/types";
+import { type UserSignIn, type UserSignUp } from "./types/types";
 
 const authName = "auth";
 
@@ -29,15 +25,14 @@ const signUpAction = createAsyncThunk<
   return authService.signUp(_payload);
 });
 
-// const verifyTokenAction = createAsyncThunk<
-//   UserProfileResponseDto,
-//   void,
-//   AsyncThunkConfig
-// >(`${authName}/verify-token`, async (_payload, { extra }) => {
-//   const { authService } = extra;
+const verifyTokenAction = createAsyncThunk<UserProfile, void, AsyncThunkConfig>(
+  `${authName}/verify-token`,
+  async (_payload, { extra }) => {
+    const { authService } = extra;
 
-//   return authService.verifyToken();
-// });
+    return authService.verifyToken();
+  }
+);
 
 const signOutAction = createAsyncThunk<void, void, AsyncThunkConfig>(
   `${authName}/sign-out`,
@@ -47,4 +42,4 @@ const signOutAction = createAsyncThunk<void, void, AsyncThunkConfig>(
   }
 );
 
-export { signInAction, signUpAction, signOutAction };
+export { signInAction, signUpAction, signOutAction, verifyTokenAction };

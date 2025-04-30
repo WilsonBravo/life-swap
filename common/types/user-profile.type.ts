@@ -1,7 +1,8 @@
 type UserProfile = {
-  id?: string;
+  id: string;
   username: string;
   email: string;
+  assignedRoutine?: string | null;
 };
 
 export { type UserProfile };
