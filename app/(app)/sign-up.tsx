@@ -26,7 +26,7 @@ import { RootState } from "@/common/types/types";
 
 const SignUp = () => {
   const router = useRouter();
-  const status = useAppSelector((state: RootState) => state.auth.status);
+  const { status, userData } = useAppSelector((state: RootState) => state.auth);
   const dispatch = useAppDispatch();
 
   const [submitForm, setSubmitForm] = useState<boolean>(false);
@@ -49,6 +49,10 @@ const SignUp = () => {
       router.replace("/(app)/(tabs)");
     }
   }, [status, submitForm]);
+
+  useEffect(() => {
+    if (userData) router.replace("/(app)/(tabs)");
+  }, [userData]);
 
   return (
     <View className="relative flex-1 bg-background">

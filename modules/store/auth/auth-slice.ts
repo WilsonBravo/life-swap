@@ -1,8 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { DataStatus } from "@/common/enums/enums";
-import { type ValueOf } from "@/common/types/types";
-import { type UserProfile } from "./types/types";
+import { type ValueOf, type UserProfile } from "@/common/types/types";
 import {
   signInAction,
   signUpAction,
@@ -16,7 +15,13 @@ type State = {
 };
 
 const initialState: State = {
-  userData: null,
+  // userData: null,
+  userData: {
+    id: "asdaslñfasx-sadas-xassa",
+    username: "john_doe",
+    email: "john.doe@example.com",
+    assignedRoutine: null,
+  },
   status: DataStatus.IDLE,
 };
 
