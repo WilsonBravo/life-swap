@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   View,
   Text,
-  TouchableWithoutFeedback,
+  Pressable,
   Image,
   KeyboardAvoidingView,
   Keyboard,
@@ -63,15 +63,15 @@ const SignUp = () => {
           zIndex: 3,
         }}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Pressable onPress={Keyboard.dismiss} className="flex-1">
           <View className="flex-1 items-center justify-center gap-4">
             <Button
               onPress={() => router.replace("/sign-in")}
               label="Log In"
               className="ml-auto max-w-[100px] rounded-none rounded-l-full"
             />
-            <Text className="text-6xl color-secondary-800">LifeSwap</Text>
-            <Text className="text-4xl">Create Account</Text>
+            <Text variant="h1" fontStyle="bold">LifeSwap</Text>
+            <Text variant="h2">Create Account</Text>
             <View className="flex-row items-center w-full pb-20">
               <View className="gap-4 w-full px-[40px]">
                 <FormInput
@@ -116,7 +116,7 @@ const SignUp = () => {
               </View>
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </Pressable>
       </KeyboardAvoidingView>
       <Image
         source={images.person}

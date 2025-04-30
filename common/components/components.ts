@@ -1,7 +1,7 @@
 export {
   View,
   TouchableOpacity,
-  TouchableWithoutFeedback,
+  Pressable,
   Keyboard,
   Image,
   KeyboardAvoidingView,
@@ -13,3 +13,10 @@ export { CustomTextInput as TextInput } from "./custom-text-input/custom-text-in
 export { Icon } from "./icon/icon";
 export { FormInput } from "./form-input/form-input";
 export { Button } from "./button/button";
+export {
+  Animated,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "./react-native-reanimated/react-native-reanimated";
+export { TabBar } from "./tab-bar/tab-bar";

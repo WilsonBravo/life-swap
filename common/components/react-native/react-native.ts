@@ -5,7 +5,7 @@ export {
   TextInputProps,
   TouchableOpacity,
   TouchableOpacityProps,
-  TouchableWithoutFeedback,
+  Pressable,
   Keyboard,
   TextInput,
   Image,
