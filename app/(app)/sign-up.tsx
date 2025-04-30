@@ -6,13 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   View,
   Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   Image,
   KeyboardAvoidingView,
   Keyboard,
   Platform,
   FormInput,
+  Button,
 } from "@/common/components/components";
 import { images } from "@/common/constants/constants";
 import {
@@ -65,12 +65,11 @@ const SignUp = () => {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 items-center justify-center gap-4">
-            <TouchableOpacity
-              className="ml-auto bg-primary-400 rounded-l-full px-5 py-3 w-[100px]"
+            <Button
               onPress={() => router.replace("/sign-in")}
-            >
-              <Text className="text-xl color-white text-right">Log In</Text>
-            </TouchableOpacity>
+              label="Log In"
+              className="ml-auto max-w-[100px] rounded-none rounded-l-full"
+            />
             <Text className="text-6xl color-secondary-800">LifeSwap</Text>
             <Text className="text-4xl">Create Account</Text>
             <View className="flex-row items-center w-full pb-20">
@@ -109,17 +108,11 @@ const SignUp = () => {
                   password
                 />
 
-                <TouchableOpacity
+                <Button
                   onPress={handleSubmit(onSubmit)}
-                  className={`${
-                    status === DataStatus.PENDING
-                      ? "bg-primary-200"
-                      : "bg-primary-400"
-                  } rounded-full px-5 py-3 w-[150px] items-center`}
+                  label="Sign Up"
                   disabled={status === DataStatus.PENDING}
-                >
-                  <Text className="text-xl color-white">Sign Up</Text>
-                </TouchableOpacity>
+                />
               </View>
             </View>
           </View>

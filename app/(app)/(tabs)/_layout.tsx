@@ -15,7 +15,7 @@ const TabsLayout = () => {
   }
 
   return (
-    <Tabs>
+    <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen name="index" />
       <Tabs.Screen name="create-routine" />
     </Tabs>

@@ -4,6 +4,7 @@ export {
   TextProps,
   TextInputProps,
   TouchableOpacity,
+  TouchableOpacityProps,
   TouchableWithoutFeedback,
   Keyboard,
   TextInput,
