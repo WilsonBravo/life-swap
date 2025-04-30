@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,13 +19,17 @@ import {
   signUpValidationSchema,
   SignUpFormData,
 } from "@/common/validations/validations";
-import Toast from "react-native-toast-message";
-import { useAppDispatch } from "@/common/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/common/hooks/hooks";
 import { signUpAction } from "@/modules/store/auth/auth-actions";
+import { DataStatus } from "@/common/enums/enums";
+import { RootState } from "@/common/types/types";
 
 const SignUp = () => {
   const router = useRouter();
+  const status = useAppSelector((state: RootState) => state.auth.status);
   const dispatch = useAppDispatch();
+
+  const [submitForm, setSubmitForm] = useState<boolean>(false);
 
   const {
     control,
@@ -37,12 +41,14 @@ const SignUp = () => {
 
   const onSubmit = async (formData: SignUpFormData) => {
     await dispatch(signUpAction(formData));
-    Toast.show({
-      type: "success",
-      text1: "You signed up successfully",
-    });
-    router.replace("/(app)/(tabs)");
+    setSubmitForm(true);
   };
+
+  useEffect(() => {
+    if (submitForm && status === DataStatus.SUCCESS) {
+      router.replace("/(app)/(tabs)");
+    }
+  }, [status, submitForm]);
 
   return (
     <View className="relative flex-1 bg-background">
@@ -61,9 +67,7 @@ const SignUp = () => {
             >
               <Text className="text-xl color-white text-right">Log In</Text>
             </TouchableOpacity>
-            <Text className="text-6xl color-secondary-800">
-              LifeSwap
-            </Text>
+            <Text className="text-6xl color-secondary-800">LifeSwap</Text>
             <Text className="text-4xl">Create Account</Text>
             <View className="flex-row items-center w-full pb-20">
               <View className="gap-4 w-full px-[40px]">
@@ -103,7 +107,12 @@ const SignUp = () => {
 
                 <TouchableOpacity
                   onPress={handleSubmit(onSubmit)}
-                  className="bg-primary-400 rounded-full px-5 py-3 w-[150px] items-center"
+                  className={`${
+                    status === DataStatus.PENDING
+                      ? "bg-primary-200"
+                      : "bg-primary-400"
+                  } rounded-full px-5 py-3 w-[150px] items-center`}
+                  disabled={status === DataStatus.PENDING}
                 >
                   <Text className="text-xl color-white">Sign Up</Text>
                 </TouchableOpacity>

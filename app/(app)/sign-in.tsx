@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,13 +19,17 @@ import {
   signInValidationSchema,
   SignInFormData,
 } from "@/common/validations/validations";
-import Toast from "react-native-toast-message";
 import { signInAction } from "@/modules/store/auth/auth-actions";
-import { useAppDispatch } from "@/common/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/common/hooks/hooks";
+import { DataStatus } from "@/common/enums/enums";
+import { RootState } from "@/common/types/types";
 
 const SignIn = () => {
   const router = useRouter();
+  const status = useAppSelector((state: RootState) => state.auth.status);
   const dispatch = useAppDispatch();
+
+  const [submitForm, setSubmitForm] = useState<boolean>(false);
 
   const {
     control,
@@ -37,12 +41,14 @@ const SignIn = () => {
 
   const onSubmit = async (formData: SignInFormData) => {
     await dispatch(signInAction(formData));
-    Toast.show({
-      type: "success",
-      text1: "You logged in successfully",
-    });
-    router.replace("/(app)/(tabs)");
+    setSubmitForm(true);
   };
+
+  useEffect(() => {
+    if (submitForm && status === DataStatus.SUCCESS) {
+      router.replace("/(app)/(tabs)");
+    }
+  }, [status, submitForm]);
 
   return (
     <View className="relative flex-1 bg-background">
@@ -84,7 +90,12 @@ const SignIn = () => {
 
                 <TouchableOpacity
                   onPress={handleSubmit(onSubmit)}
-                  className="bg-primary-400 rounded-full px-5 py-3 w-[150px] items-center"
+                  className={`${
+                    status === DataStatus.PENDING
+                      ? "bg-primary-200"
+                      : "bg-primary-400"
+                  } rounded-full px-5 py-3 w-[150px] items-center`}
+                  disabled={status === DataStatus.PENDING}
                 >
                   <Text className="text-xl color-white">Log In</Text>
                 </TouchableOpacity>
