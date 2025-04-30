@@ -2,13 +2,14 @@ import { z } from "zod";
 
 const validationSchema = z.object({
   email: z
-    .string({ message: "Email no válido" })
-    .min(1, { message: "Email no válido" })
-    .email({ message: "Email no válido" }),
+    .string({ message: "Invalid email" })
+    .email({ message: "Invalid email" })
+    .min(6, { message: "More than 6 characters" })
+    .max(50, { message: "Less than 50 characters" }),
   password: z
     .string()
-    .min(6, { message: "La contraseña debe tener al menos 6 caracteres" })
-    .max(12, { message: "La contraseña no debe tener más de 12 caracteres" }),
+    .min(6, { message: "More than 6 characters" })
+    .max(24, { message: "Less than 24 characters" }),
 });
 
 export type SignInFormData = z.infer<typeof validationSchema>;

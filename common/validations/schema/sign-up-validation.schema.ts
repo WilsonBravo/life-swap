@@ -5,18 +5,22 @@ const validationSchema = z
     username: z
       .string({ message: "Invalid username" })
       .min(2, { message: "More than 2 characters" })
-      .max(40, { message: "Less than 40 characters" })
+      .max(12, { message: "Less than 12 characters" })
       .regex(/^\S+$/, {
         message: "Single word without spaces",
+      })
+      .regex(/^[a-zA-Z0-9.]+$/, {
+        message: "Can only contain letters, numbers, and dots",
       }),
     email: z
       .string({ message: "Invalid email" })
-      .min(1, { message: "Invalid email" })
-      .email({ message: "Invalid email" }),
+      .email({ message: "Invalid email" })
+      .min(6, { message: "More than 6 characters" })
+      .max(50, { message: "Less than 50 characters" }),
     password: z
       .string()
       .min(6, { message: "More than 6 characters" })
-      .max(20, { message: "Less than 20 characters" })
+      .max(24, { message: "Less than 24 characters" })
       .regex(/[A-Z]/, {
         message: "At least one capital letter",
       })
@@ -30,7 +34,7 @@ const validationSchema = z
     confirmPassword: z
       .string()
       .min(6, { message: "More than 6 characters" })
-      .max(20, { message: "Less than 20 characters" })
+      .max(24, { message: "Less than 24 characters" })
       .regex(/[A-Z]/, {
         message: "At least one capital letter",
       })
