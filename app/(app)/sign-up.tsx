@@ -70,7 +70,9 @@ const SignUp = () => {
               label="Log In"
               className="ml-auto max-w-[100px] rounded-none rounded-l-full"
             />
-            <Text variant="h1" fontStyle="bold">LifeSwap</Text>
+            <Text variant="h1" fontStyle="bold">
+              LifeSwap
+            </Text>
             <Text variant="h2">Create Account</Text>
             <View className="flex-row items-center w-full pb-20">
               <View className="gap-4 w-full px-[40px]">
@@ -119,15 +121,15 @@ const SignUp = () => {
         </Pressable>
       </KeyboardAvoidingView>
       <Image
-        source={images.person}
+        source={images.person_3}
         style={{ zIndex: 2 }}
-        className="h-[400px] absolute left-40 bottom-14"
+        className="h-[400px] absolute left-10 bottom-20"
         resizeMode="contain"
       />
       <Image
-        source={images.bg}
+        source={images.bg_3}
         style={{ zIndex: 1 }}
-        className="absolute w-full -bottom-28"
+        className="absolute w-[500px] -bottom-32"
         resizeMode="contain"
       />
     </View>
