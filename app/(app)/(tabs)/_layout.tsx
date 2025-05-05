@@ -1,7 +1,12 @@
 import React from "react";
 import { useAppSelector } from "@/common/hooks/hooks";
 import { Redirect, Tabs } from "expo-router";
-import { View, TabBar, Loading } from "@/common/components/components";
+import {
+  View,
+  TabBar,
+  Loading,
+  HeaderRoutines,
+} from "@/common/components/components";
 
 const TabsLayout = () => {
   const { userData, status } = useAppSelector((state) => state.auth);
@@ -20,6 +25,7 @@ const TabsLayout = () => {
 
   return (
     <>
+      <HeaderRoutines />
       <View className="absolute z-10 bottom-16 left-4 w-96">
         <TabBar
           routes={[

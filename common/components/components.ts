@@ -25,3 +25,5 @@ export {
 export { TabBar } from "./tab-bar/tab-bar";
 export { Loading } from "./loading/loading";
 export { NotFound } from "./not-found/not-found";
+export { Header } from "./header/header";
+export { HeaderRoutines } from "./header-routines/header-routines";

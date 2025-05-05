@@ -2,10 +2,11 @@ import { useRouter, Router } from "expo-router";
 
 import { View, TouchableOpacity } from "../react-native/react-native";
 import { Icon } from "../icon/icon";
+import { type IconName } from "@/common/types/types";
 
 type Properties = {
   routes: {
-    iconName: keyof typeof Icon.glyphMap;
+    iconName: IconName;
     route: Parameters<Router["replace"]>[0];
   }[];
 };
@@ -21,7 +22,7 @@ const TabBar: React.FC<Properties> = ({ routes }) => {
             onPress={() => router.replace(route)}
             className="flex-1 items-center"
           >
-            <Icon name={iconName} size={30} className="color-secondary-800" />
+            <Icon name={iconName} size={30} />
           </TouchableOpacity>
         );
       })}

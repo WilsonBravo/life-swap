@@ -4,12 +4,13 @@ import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { View, Text, TouchableOpacity } from "../react-native/react-native";
 import { CustomTextInput as TextInput } from "../custom-text-input/custom-text-input";
 import { Icon } from "../icon/icon";
+import { type IconName } from "@/common/types/types";
 
 type Properties<T extends FieldValues> = {
   name: Path<T>;
   placeholder: string;
   control: Control<T>;
-  iconName: keyof typeof Icon.glyphMap;
+  iconName: IconName;
   errorMessage?: string | null;
   password?: boolean;
 };
@@ -30,7 +31,7 @@ const FormInput = <T extends FieldValues>({
       render={({ field: { onChange, onBlur, value } }) => (
         <View>
           <View className="flex-row gap-2 items-center bg-secondary-100 px-5 py-4 rounded-xl w-[230px]">
-            <Icon name={iconName} size={20} className="color-secondary-500" />
+            <Icon name={iconName} className="color-secondary-500" />
             <TextInput
               onBlur={onBlur}
               onChangeText={onChange}
