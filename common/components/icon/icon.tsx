@@ -10,10 +10,21 @@ cssInterop(FontAwesome, {
 
 type Properties = React.ComponentProps<typeof FontAwesome> & {
   size?: number;
+  className?: string;
 };
 
-const Icon: React.FC<Properties> = ({ size = 30, ...props }) => {
-  return <FontAwesome size={size} {...props} className="text-secondary-800" />;
+const Icon: React.FC<Properties> = ({
+  size = 30,
+  className = "",
+  ...props
+}) => {
+  return (
+    <FontAwesome
+      size={size}
+      {...props}
+      className={`text-secondary-800 ${className}`}
+    />
+  );
 };
 
 export { Icon, FontAwesome };

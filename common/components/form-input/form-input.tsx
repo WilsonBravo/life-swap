@@ -31,7 +31,7 @@ const FormInput = <T extends FieldValues>({
       render={({ field: { onChange, onBlur, value } }) => (
         <View>
           <View className="flex-row gap-2 items-center bg-secondary-100 px-5 py-4 rounded-xl w-[230px]">
-            <Icon name={iconName} className="color-secondary-500" />
+            <Icon name={iconName} className="text-secondary-500" size={20} />
             <TextInput
               onBlur={onBlur}
               onChangeText={onChange}
@@ -44,7 +44,7 @@ const FormInput = <T extends FieldValues>({
               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                 <Icon
                   name={showPassword ? "eye" : "eye-slash"}
-                  className="color-secondary-500"
+                  className="text-secondary-500"
                   size={16}
                 />
               </TouchableOpacity>
