@@ -46,7 +46,7 @@ const CustomText: React.FC<Properties> = ({
   return (
     <Text
       {...props}
-      className={`color-secondary-800 ${customVariant[variant]} ${customFontStyle[fontStyle]} ${className}`}
+      className={`text-secondary-800 ${customVariant[variant]} ${customFontStyle[fontStyle]} ${className}`}
     >
       {children}
     </Text>

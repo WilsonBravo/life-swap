@@ -24,3 +24,4 @@ export {
 } from "./react-native-reanimated/react-native-reanimated";
 export { TabBar } from "./tab-bar/tab-bar";
 export { Loading } from "./loading/loading";
+export { NotFound } from "./not-found/not-found";
