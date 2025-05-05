@@ -7,6 +7,7 @@ const images: Record<string, ImageSourcePropType> = {
   bg: require("@/assets/images/bg-1.png"),
   bg_2: require("@/assets/images/bg-2.png"),
   bg_3: require("@/assets/images/bg-3.png"),
+  logo: require("@/assets/images/icon.png"),
 };
 
 export { images };

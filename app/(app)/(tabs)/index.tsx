@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useRouter } from "expo-router";
+
 import {
   Text,
   TouchableOpacity,
@@ -18,11 +21,12 @@ import { images } from "@/common/constants/constants";
 import { useAppDispatch, useAppSelector } from "@/common/hooks/hooks";
 import { RootState } from "@/common/types/root-state.type";
 import { signOutAction } from "@/modules/store/auth/auth-actions";
-import { useState } from "react";
 
 const Index = () => {
   const dispatch = useAppDispatch();
   const userData = useAppSelector((state: RootState) => state.auth.userData);
+
+  const router = useRouter();
 
   const [open, setOpen] = useState(false);
   const height = useSharedValue(0);
@@ -101,7 +105,11 @@ const Index = () => {
             <Text variant="h4">
               Start building your routine by adding your favorite activities
             </Text>
-            <Button label="Get Started" className="w-full" />
+            <Button
+              label="Get Started"
+              className="w-full"
+              onPress={() => router.push("/routines/create-routine")}
+            />
           </View>
         </View>
       </Pressable>

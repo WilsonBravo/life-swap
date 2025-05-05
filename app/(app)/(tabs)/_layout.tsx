@@ -1,13 +1,17 @@
 import React from "react";
 import { useAppSelector } from "@/common/hooks/hooks";
 import { Redirect, Tabs } from "expo-router";
-import { Text, View, TabBar } from "@/common/components/components";
+import { View, TabBar, Loading } from "@/common/components/components";
 
 const TabsLayout = () => {
   const { userData, status } = useAppSelector((state) => state.auth);
 
   if (status === "pending") {
-    return <Text>Loading...</Text>;
+    return (
+      <View className="flex-1 bg-background items-center justify-center">
+        <Loading />
+      </View>
+    );
   }
 
   if (!userData) {
@@ -20,7 +24,7 @@ const TabsLayout = () => {
         <TabBar
           routes={[
             { iconName: "home", route: "/(app)/(tabs)" },
-            { iconName: "calendar", route: "/(app)/(tabs)/create-routine" },
+            { iconName: "calendar", route: "/(app)/(tabs)/routines" },
           ]}
         />
       </View>
@@ -33,7 +37,7 @@ const TabsLayout = () => {
         }}
       >
         <Tabs.Screen name="index" />
-        <Tabs.Screen name="create-routine" />
+        <Tabs.Screen name="routines" />
       </Tabs>
     </>
   );

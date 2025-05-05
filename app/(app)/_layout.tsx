@@ -9,7 +9,7 @@ export default function AppLayout() {
 
   useEffect(() => {
     dispatch(verifyTokenAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Stack>
@@ -30,6 +30,12 @@ export default function AppLayout() {
         name="sign-up"
         options={{
           presentation: "modal",
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="routines"
+        options={{
           headerShown: false,
         }}
       />
