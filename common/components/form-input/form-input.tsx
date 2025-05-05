@@ -29,7 +29,7 @@ const FormInput = <T extends FieldValues>({
       control={control}
       render={({ field: { onChange, onBlur, value } }) => (
         <View>
-          <View className="flex-row gap-2 items-center bg-secondary-100 px-5 rounded-xl w-[230px]">
+          <View className="flex-row gap-2 items-center bg-secondary-100 px-5 py-4 rounded-xl w-[230px]">
             <Icon name={iconName} size={20} className="color-secondary-500" />
             <TextInput
               onBlur={onBlur}
